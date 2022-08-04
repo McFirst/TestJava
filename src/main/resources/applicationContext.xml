@@ -11,4 +11,9 @@
           class="ru.egorov.RockMusic">
     </bean>
 
+    <bean id="musicPlayer"
+          class="ru.egorov.MusicPlayer">
+        <constructor-arg ref="musicBean"/>
+    </bean>
+
 </beans>
