@@ -1,11 +1,14 @@
 package ru.egorov;
 
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+import java.lang.annotation.Annotation;
 
 public class TestSpring {
     public static void main(String[] args) {
-        ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext(
-                "applicationContext.xml"
+        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(
+                SpringConfig.class
         );
 /*
         Music music = context.getBean("rockMusic", Music.class);
@@ -23,11 +26,11 @@ public class TestSpring {
         //System.out.println(computer);
 
         MusicPlayer musicPlayer = context.getBean("musicPlayer", MusicPlayer.class);
-        System.out.println(musicPlayer.getName());
-        System.out.println(musicPlayer.getVolume());
+        System.out.println(musicPlayer.playMusic());
+        //System.out.println(musicPlayer.getName());
+        //System.out.println(musicPlayer.getVolume());
 
-        ClassicalMusic music1 = context.getBean("classicalMusic", ClassicalMusic.class);
-
+        //ClassicalMusic music1 = context.getBean("classicalMusic", ClassicalMusic.class);
 
         context.close();
     }

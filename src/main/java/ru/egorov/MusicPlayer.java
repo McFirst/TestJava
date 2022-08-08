@@ -6,8 +6,9 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import java.security.SecureRandom;
+import java.util.List;
 
-@Component
+//@Component
 public class MusicPlayer {
     @Value("${musicPlayer.name}")
     private String name;
@@ -24,24 +25,18 @@ public class MusicPlayer {
 
     //@Autowired
     //@Qualifier("classicalMusic")
-    private Music music1;
-    private Music music2;
+    private List<Music> musicList;
 
-    @Autowired
-    public MusicPlayer(@Qualifier("rockMusic") Music music1, @Qualifier("classicalMusic") Music music2){
-        this.music1 = music1;
-        this.music2 = music2;
+    //@Autowired
+    public MusicPlayer(List<Music> musicList){
+        this.musicList = musicList;
     }
 
-    public  String playMusic(Genre genre){
+    public  String playMusic(){
+        int count = musicList.size();
         SecureRandom secureRandom = new SecureRandom();
-        int index = secureRandom.nextInt(3);
-        if (genre == Genre.CLASSICAL) {
-            return "Playing " + music2.getSong(index);
-        }
-        else {
-            return "Playing " + music1.getSong(index);
-        }
+        int index = secureRandom.nextInt(count);
+        return "Playing " + musicList.get(index).getSong();
     }
 }
 
